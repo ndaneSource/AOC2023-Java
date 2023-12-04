@@ -2,7 +2,6 @@ package com.aoc23;
 
 import java.util.List;
 
-import com.aoc23.util.IDay;
 import com.aoc23.y2023.*;
 
 public class Main {

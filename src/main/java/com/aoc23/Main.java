@@ -1,19 +1,21 @@
 package com.aoc23;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import com.aoc23.util.IDay;
 import com.aoc23.y2023.*;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello AOC!");      
         
-        runSolution(1,"testinput.txt");
+        //runSolution(1,"input.txt");
+        runSolution(2,"input2.txt");
+
     }
 
     public static void runSolution(int part, String fileName){
-         Day2 run = new Day2();
+        Day3 run = new Day3();
         List<String> input = run.getFileList(fileName);
         int solution = 0;
         if(part == 1)

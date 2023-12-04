@@ -28,7 +28,7 @@ public abstract class IDay {
     }
 
     public int solution1(List<String> input){
-        return 0;
+        return 10;
     }
     public int solution2(List<String> input){
         return 0;

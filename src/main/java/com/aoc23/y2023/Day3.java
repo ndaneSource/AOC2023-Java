@@ -1,10 +1,8 @@
 package com.aoc23.y2023;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -75,7 +73,6 @@ public class Day3 extends IDay{
         symbolRegex = "[*]";
         maxLength = input.get(0).length();
         int sum = 0;
-        final int max = input.get(0).length()-1;
         //get all symbols
         for(int i =0; i < input.size(); i++){
             List<Integer> lineSymbols= getSymbols(input.get(i));
@@ -127,7 +124,6 @@ public class Day3 extends IDay{
 
     public List<Integer> getSymbols(String line) {
         List<Integer> symbols= new ArrayList<>();
-        int i = 0;
         Pattern reg = Pattern.compile(symbolRegex);
         Matcher match = reg.matcher(line);
         while(match.find()){

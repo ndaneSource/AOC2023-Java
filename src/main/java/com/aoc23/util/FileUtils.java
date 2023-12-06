@@ -12,6 +12,10 @@ public class FileUtils {
         return Paths.get("aoc23\\src\\main\\resources\\"+ fileName).toAbsolutePath();
     }
 
+    public static Path getFilePath(String dir, String fileName){
+        return Paths.get(dir+ fileName).toAbsolutePath();
+    }
+
     public static List<String> getFileLinesList(String fileName){
         try{
             return Files.readAllLines(getFilePath(fileName));
@@ -29,4 +33,15 @@ public class FileUtils {
             throw new Error(e);
         }
     }
+
+    public static String getFileString(String dir, String fileName){
+        try{
+            return Files.readString(getFilePath(dir, fileName));
+        }catch(Exception e){
+            System.out.println(e.toString());
+            throw new Error(e);
+        }
+    }
+
+
 }

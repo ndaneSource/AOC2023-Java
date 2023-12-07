@@ -3,8 +3,6 @@ package com.aoc23.y2023;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.javatuples.Pair;
@@ -150,35 +148,8 @@ public class Day5 extends IDay{
             long diff = start - range.target;
             long diffEnd = range.targetEnd-end;
 
-            //matches.add(new Pair<Long,Long>(range.target,range.target+diff));
             matches.add(new Pair<Long,Long>(range.start +diff,range.end-diffEnd));
-            //matches.add(new Pair<Long,Long>(range.targetEnd-diffEnd,range.targetEnd));
-
         }
-
-        // if(start <= range.start && end >= range.start){
-        //     if(end >= range.end){
-        //         matches.add(new Pair<Long,Long>(range.target,range.targetEnd));
-        //     }else {
-        //         long diff = range.end - end;
-        //         matches.add(new Pair<Long,Long>(range.target,range.targetEnd-diff));
-        //     }
-        // }else if(start <= range.end && end >= range.end){
-        //     if(end >= range.end){
-        //         matches.add(new Pair<Long,Long>(range.target,range.targetEnd));
-        //     }else {
-        //         long diff = start - range.start;
-        //         matches.add(new Pair<Long,Long>(range.target +diff,range.targetEnd));
-        //     }
-        // }else if(start >=range.start && end < range.end){
-        //     long diff = start - range.start;
-        //     long diffEnd = end - range.end;
-
-        //     //matches.add(new Pair<Long,Long>(range.target,range.target+diff));
-        //     matches.add(new Pair<Long,Long>(range.target +diff,range.targetEnd-diffEnd));
-        //     //matches.add(new Pair<Long,Long>(range.targetEnd-diffEnd,range.targetEnd));
-
-        // }
 
 
         return matches;

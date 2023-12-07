@@ -5,12 +5,12 @@ import java.util.Map;
 
 import com.aoc23.util.IDay;
 
-public class DayDAY_NUMBER extends IDay{
+public class Day7 extends IDay{
     
     public Map<String, Integer> cubeMap;
 
-    public DayDAY_NUMBER() {
-        super("DAY_NUMBER");
+    public Day7() {
+        super("7");
     }
 
     public int solution1(List<String> input){

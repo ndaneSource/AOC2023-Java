@@ -21,4 +21,9 @@ public class Day7 extends IDay{
         return 0;
     }
 
+    public int getHandValue(String input){
+        int value = 7;
+        String hand = input.trim().split("\\s+")[0];
+        
+    }
 }

@@ -1,16 +1,9 @@
 package com.aoc23.y2023;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+
 import java.util.stream.LongStream;
-
-import org.javatuples.Pair;
-
 import com.aoc23.util.IDay;
 
 public class Day6 extends IDay{

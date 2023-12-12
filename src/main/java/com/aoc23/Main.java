@@ -15,7 +15,7 @@ public class Main {
     }
 
     public static void runSolution(int part, String fileName){
-        IDay run = new Day9();
+        IDay run = new Day10();
         List<String> input = run.getFileList(fileName);
         int solution = 0;
         if(part == 1)

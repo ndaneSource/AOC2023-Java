@@ -36,8 +36,14 @@ public abstract class IDay {
         return 0;
     }
 
-    public List<Integer> splitToIntegers(String input, String splitter){
+    public List<Integer> splitToIntegersAssumeColon(String input, String splitter){
         List<String> splitString = Arrays.asList(input.trim().split(":")[1].trim().split(splitter));
+        return splitString.stream().map(str -> Integer.parseInt(str)).collect(Collectors.toList());
+        
+    }
+
+    public List<Integer> splitToIntegers(String input, String splitter){
+        List<String> splitString = Arrays.asList(input.trim().split(splitter));
         return splitString.stream().map(str -> Integer.parseInt(str)).collect(Collectors.toList());
         
     }

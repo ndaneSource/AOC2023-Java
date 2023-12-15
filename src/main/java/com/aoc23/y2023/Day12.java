@@ -8,46 +8,49 @@ import com.aoc23.util.IDay;
 
 public class Day12 extends IDay{
     
-    Map<String,Integer> memory;
+    Map<String,Long> memory;
     public Day12() {
         super("12");
-        memory = new HashMap<String,Integer>();
+        memory = new HashMap<String,Long>();
     }
 
+    //253748996 too low
+    //253748996
     public int solution1(List<String> input){
-        int result = input.stream().map(line-> this.solveLine(line)).reduce(Integer::sum).orElse(-1);
-        return result;
+        long result = input.stream().map(line-> this.solveLine(line)).reduce(Long::sum).orElse(-1L);
+        System.out.println("output: "+result);
+        return 0;
     }
 
     public int solution2(List<String> input){
         return 0;
     }
 
-    public int solveLine(String line){
-        //7277 too low
-        //7596 too low
-        //8000 too low
-        //9
-        //8540 nope
+    public long solveLine(String line){
         String[] splitLine = line.split(" ");
 
-        //List<String> puzzle = splitPuzzle(splitLine[0]);
-        String puzzle = splitLine[0];
-        List<Integer> keyList = this.splitToIntegers(splitLine[1], ",");
+        String puzzle = splitLine[0]+"?";
+        puzzle = puzzle.repeat(5);
+        puzzle = puzzle.substring(0, puzzle.length()-1);
 
-        int results = simplify(puzzle, keyList);
-        System.out.println("line "+line+ " --"+ results);
+        String keyStr = (splitLine[1]+",").repeat(5);
+        List<Integer> keyList = this.splitToIntegers(keyStr, ",");
+ 
+    
+
+        long results = simplify(puzzle, keyList);
+        System.out.println("line "+puzzle+ " "+keyList.toString()+ " --"+ results);
         if(results < 1)
             System.out.println("how?");
         return results;
 
     }
 
-    public int simplify(String puzzleStr, List<Integer> keyList) {
-        int count = 0;
+    public long simplify(String puzzleStr, List<Integer> keyList) {
+        long count = 0;
         puzzleStr = trimDots(puzzleStr);
 
-        int mem = remember(puzzleStr, keyList);
+        long mem = remember(puzzleStr, keyList);
         if(mem >= -1)
             return mem;
         int[] metrics = getPuzzleMetrics(puzzleStr, keyList);
@@ -72,7 +75,6 @@ public class Day12 extends IDay{
         int minRequired = 0;
         int keyAmount = keyList.get(0);
         int hashFound = 0;
-        int qs = 0;
         boolean last = false;
         int hashBreak = 10000;
         boolean end =false;
@@ -91,18 +93,13 @@ public class Day12 extends IDay{
                 minRequired++;
                 break;
             case '#':
-                if(hashFound >0 && minRequired > keyAmount){
-                    qs--;
-                }else if(hashFound==0){
+                if(hashFound==0){
                     hashBreak = i+keyAmount;
                 }
                 minRequired++;
                 hashFound++;
                 break;
             case '?':
-                if(hashFound ==0){
-                    qs++;
-                }
                 minRequired++;
             default:
                 break;
@@ -111,7 +108,7 @@ public class Day12 extends IDay{
             boolean currentBufferPoint = end|| (!end && puzzleStr.charAt(i) != '#');
 
             if(keyAmount < minRequired && currentBufferPoint){
-                int rightCount;
+                long rightCount;
                 if(keyList.size() ==2)
                     rightCount= simplifySingle(puzzleStr.substring(i+1), keyList.get(1));
                 else
@@ -123,7 +120,6 @@ public class Day12 extends IDay{
             if(last)
                 break;
             if(puzzleStr.charAt(i)=='.'){
-                qs=0;
                 minRequired=0;
             }
         }
@@ -133,11 +129,11 @@ public class Day12 extends IDay{
     }
 
 
-     public int simplifySingle(String puzzleStr, Integer keyList) {
-        int count = 0;
+     public long simplifySingle(String puzzleStr, Integer keyList) {
+        long count = 0;
         puzzleStr = trimDots(puzzleStr);
 
-        int mem = remember(puzzleStr, List.of(keyList));
+        long mem = remember(puzzleStr, List.of(keyList));
         if(mem >= -1)
             return mem;
         int[] metrics = getPuzzleMetrics(puzzleStr, List.of(keyList));
@@ -173,7 +169,7 @@ public class Day12 extends IDay{
                 if(hashFound >0){                    
                     last = true;
                 }
-                minRequired++;
+                minRequired =0;
                 break;
             case '#':
                 if(hashFound >0 && minRequired > keyAmount){
@@ -240,14 +236,14 @@ public class Day12 extends IDay{
 
     }
 
-    public void commitMemory(String puzzle, List<Integer> keyList, Integer count){
+    public void commitMemory(String puzzle, List<Integer> keyList, Long count){
         String keyString = keyList.size()>0? keyList.toString(): "[]";
         memory.put(puzzle+"-"+keyString, count);
     }
 
-    public int remember(String puzzle, List<Integer> keyList){
+    public long remember(String puzzle, List<Integer> keyList){
         String keyString = keyList.size()>0? keyList.toString(): "[]";
-        return memory.getOrDefault(puzzle+"-"+keyString,-2); 
+        return memory.getOrDefault(puzzle+"-"+keyString,-2L); 
     }
 
     public String trimDots(String puzzle){

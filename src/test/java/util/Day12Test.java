@@ -16,7 +16,7 @@ public class Day12Test {
         String puzzle = "#";
         List<Integer> keys = List.of(1);
         //List<String> puzzleList = d.splitPuzzle(puzzle);
-        int output = d.simplify(puzzle, keys);
+        long output = d.simplify(puzzle, keys);
 
         int expected = 1;
         assertEquals(expected, output);
@@ -28,7 +28,7 @@ public class Day12Test {
         String puzzle = "?#?.?";
         List<Integer> keys = List.of(1);
         //List<String> puzzleList = d.splitPuzzle(puzzle);
-        int output = d.simplify(puzzle, keys);
+        long output = d.simplify(puzzle, keys);
 
         int expected = 1;
         assertEquals(expected, output);
@@ -40,7 +40,7 @@ public class Day12Test {
         String puzzle = "?#?.?";
         List<Integer> keys = List.of(2);
         //List<String> puzzleList = d.splitPuzzle(puzzle);
-        int output = d.simplify(puzzle, keys);
+        long output = d.simplify(puzzle, keys);
 
         int expected = 2;
         assertEquals(expected, output);
@@ -52,7 +52,7 @@ public class Day12Test {
         String puzzle = "?#?.?";
         List<Integer> keys = List.of(2,1);
         //List<String> puzzleList = d.splitPuzzle(puzzle);
-        int output = d.simplify(puzzle, keys);
+        long output = d.simplify(puzzle, keys);
 
         int expected = 2;
         assertEquals(expected, output);
@@ -64,7 +64,7 @@ public class Day12Test {
         String puzzle = "???.###";
         List<Integer> keys = List.of(1,1,3);
         //List<String> puzzleList = d.splitPuzzle(puzzle);
-        int output = d.simplify(puzzle, keys);
+        long output = d.simplify(puzzle, keys);
 
         int expected = 1;
         assertEquals(expected, output);
@@ -76,7 +76,7 @@ public class Day12Test {
         String puzzle = "?#?.#?";
         List<Integer> keys = List.of(1);
         //List<String> puzzleList = d.splitPuzzle(puzzle);
-        int output = d.simplify(puzzle, keys);
+        long output = d.simplify(puzzle, keys);
 
         int expected = 0;
         assertEquals(expected, output);
@@ -88,7 +88,7 @@ public class Day12Test {
         String puzzle = "???.###";
         List<Integer> keys = List.of(1,1,3);
         //List<String> puzzleList = d.splitPuzzle(puzzle);
-        int output = d.simplify(puzzle, keys);
+        long output = d.simplify(puzzle, keys);
 
         int expected = 1;
         assertEquals(expected, output);
@@ -100,7 +100,7 @@ public class Day12Test {
         String puzzle = "?###????????";
         List<Integer> keys = List.of(3,2,1);
         //List<String> puzzleList = d.splitPuzzle(puzzle);
-        int output = d.simplify(puzzle, keys);
+        long output = d.simplify(puzzle, keys);
 
         int expected = 10;
         assertEquals(expected, output);
@@ -112,7 +112,7 @@ public class Day12Test {
         String puzzle = ".??..??...?##.";
         List<Integer> keys = List.of(1,1,3);
         //List<String> puzzleList = d.splitPuzzle(puzzle);
-        int output = d.simplify(puzzle, keys);
+        long output = d.simplify(puzzle, keys);
 
         int expected = 4;
         assertEquals(expected, output);
@@ -121,7 +121,7 @@ public class Day12Test {
     @Test
 	public void shouldFindRealSolution4() {
 		Day12 d = new Day12();
-        int output = d.solution1(List.of("???????.??????? 1,1,1,2,1"));
+        long output = d.solution1(List.of("???????.??????? 1,1,1,2,1"));
         //List<String> puzzleList = d.splitPuzzle(puzzle);
 
         int expected = 160;
@@ -131,7 +131,7 @@ public class Day12Test {
     @Test
 	public void shouldFindRealSolution5() {
 		Day12 d = new Day12();
-        int output = d.solution1(List.of("??.????#??? 1,1,4"));
+        long output = d.solution1(List.of("??.????#??? 1,1,4"));
         //List<String> puzzleList = d.splitPuzzle(puzzle);
 
         int expected = 13;
@@ -141,10 +141,10 @@ public class Day12Test {
     @Test
 	public void shouldFindRealSolution6() {
 		Day12 d = new Day12();
-        int output = d.solution1(List.of("?.???????.#?????#??? 1,1,3,7,1"));
+        long output = d.solution1(List.of("????????#??.?????.?? 2,4,2,1"));
         //List<String> puzzleList = d.splitPuzzle(puzzle);
 
-        int expected = 8;
+        int expected = 132;
         assertEquals(expected, output);
 	}
     

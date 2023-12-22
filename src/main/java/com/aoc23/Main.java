@@ -9,13 +9,14 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello AOC!");      
         
-        runSolution(1,"input.txt");
+        runSolution(1,"testinput.txt");
         //runSolution(2,"input2.txt");
 
     }
 
     public static void runSolution(int part, String fileName){
-        IDay run = new Day15();
+
+        IDay run = new Day18();
         List<String> input = run.getFileList(fileName);
         int solution = 0;
         if(part == 1)

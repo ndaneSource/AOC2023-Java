@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello AOC!");      
         
-        runSolution(1,"testinput.txt");
+        runSolution(1,"input.txt");
         //runSolution(2,"input2.txt");
 
     }

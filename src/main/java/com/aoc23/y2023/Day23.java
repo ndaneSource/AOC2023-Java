@@ -1,6 +1,8 @@
 package com.aoc23.y2023;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -10,16 +12,22 @@ import com.aoc23.util.IDay;
 
 public class Day23 extends IDay{
     
-    public Map<String, Integer> cubeMap;
+    public Map<String, Integer> distanceMap;
     public int lineNumberMax;
     public int linePosMax;
-    public List<String> puzzleMap;
+    public List<String> puzzleInput;
 
     public Day23() {
         super("23");
+        distanceMap = new HashMap<String, Integer>();
     }
 
     public int solution1(List<String> input){
+        lineNumberMax = input.size();
+        linePosMax = input.get(0).length();
+        int[] start = findS(input);
+
+        
         return 0;
     }
 
@@ -27,12 +35,16 @@ public class Day23 extends IDay{
         return 0;
     }
 
+    public List<PuzzleHelper> TravelPath(List<PuzzleHelper> path){
+        List<PuzzleHelper> nextPath = path.stream()
+            .map(PuzzleHelper::progressRoute)
+            .flatMap(phList->phList.stream())
+            .collect(Collectors.toList());
+
+        return nextPath;
+    }
     public int[] findS(List<String> input){
-        for(int i = 0; i < input.size(); i++){
-            if(input.get(i).indexOf("S")> -1)
-                return new int[]{i, input.get(i).indexOf("S")};
-        }
-        return null;
+        return new int[]{lineNumberMax-1, input.get(lineNumberMax-1).indexOf(".")};
     }
         
     public class PuzzleHelper{
@@ -43,7 +55,7 @@ public class Day23 extends IDay{
         long imaginaryPos;
         int step;
 
-        public PuzzleHelper(int lineNumber, int linePos){
+        public PuzzleHelper(int lineNumber, int linePos, int step){
             this.lineNumber =lineNumber;
             this.linePos = linePos;
 
@@ -106,12 +118,12 @@ public class Day23 extends IDay{
             if(puzzleInput.get(nextLine).charAt(nextPos)=='#')
                 return Optional.empty();
 
-            // if(currentSteps.contains(nextImgLine+","+nextImgPos))
-            //     return Optional.empty();
-            // else    
-            //     currentSteps.add(nextImgLine+","+nextImgPos);
+            if(distanceMap.containsKey(nextLine+","+nextPos))
+                return Optional.empty();
+            else    
+                distanceMap.put(nextLine+","+nextPos, step+1);
 
-            return Optional.of(new PuzzleHelper(nextLine, nextPos));
+            return Optional.of(new PuzzleHelper(nextLine, nextPos, step));
 
         }
 

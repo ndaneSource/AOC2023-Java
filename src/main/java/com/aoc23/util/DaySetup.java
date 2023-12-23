@@ -8,7 +8,7 @@ import static com.aoc23.util.FileUtils.*;
 
 public class DaySetup {
 
-    static String day = "21";
+    static String day = "23";
 
     static String baseDir = "aoc23\\src\\main\\";
     static String template = "aoc23\\src\\main\\resources";

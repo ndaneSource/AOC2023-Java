@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.aoc23.util.IDay;
@@ -54,11 +55,12 @@ public class Day23 extends IDay{
         long imaginaryLine;
         long imaginaryPos;
         int step;
+        Set<String> myPath;
 
-        public PuzzleHelper(int lineNumber, int linePos, int step){
+        public PuzzleHelper(int lineNumber, int linePos, int step, Set<String> myPath){
             this.lineNumber =lineNumber;
             this.linePos = linePos;
-
+            this.myPath = myPath;
         }
 
         public List<PuzzleHelper> progressRoute(){
@@ -83,10 +85,13 @@ public class Day23 extends IDay{
             //long nextImgPos = this.imaginaryPos;
             switch(dir){
                 case 'R':
-                    if(linePos < linePosMax-1)
+                    if(linePos < linePosMax-1){
                         nextPos++;
+                        if(nextChar(nextLine, nextPos) == '>')
+                            return Optional.empty();
+                    }
                     else
-                        Optional.empty();
+                        return Optional.empty();
                     //    nextPos = 0;
                     //nextImgPos++;
                     break;
@@ -94,7 +99,7 @@ public class Day23 extends IDay{
                 if(linePos > 0)
                         nextPos--;
                     else
-                        Optional.empty();
+                        return Optional.empty();
                         //nextPos = linePosMax-1;
                     //nextImgPos--;
                     break;
@@ -102,29 +107,37 @@ public class Day23 extends IDay{
                 if(lineNumber > 0)
                         nextLine--;
                     else
-                        Optional.empty();
+                        return Optional.empty();
                         //nextLine = lineNumberMax-1;
                     //nextImgLine--;
                     break;
                 case 'D':
-                if(lineNumber < lineNumberMax-1)
+                if(lineNumber < lineNumberMax-1){
                         nextLine++;
+                        if(nextChar(nextLine, nextPos) == 'v')
+                            return Optional.empty();
+                    }
                     else
-                        Optional.empty();
+                        return Optional.empty();
                         //nextLine = 0;
                     //nextImgLine++;
                     break;
             }
-            if(puzzleInput.get(nextLine).charAt(nextPos)=='#')
+            if(nextChar(nextLine, nextPos)=='#')
                 return Optional.empty();
 
-            if(distanceMap.containsKey(nextLine+","+nextPos))
+            if(myPath.contains(nextLine+","+nextPos)){
                 return Optional.empty();
+            }
             else    
-                distanceMap.put(nextLine+","+nextPos, step+1);
+                myPath.add(nextLine+","+nextPos);
 
-            return Optional.of(new PuzzleHelper(nextLine, nextPos, step));
+            return Optional.of(new PuzzleHelper(nextLine, nextPos, step+1, myPath));
 
+        }
+
+        private char nextChar(int nextLine, int nextPos){
+            return puzzleInput.get(nextLine).charAt(nextPos);
         }
 
     }
